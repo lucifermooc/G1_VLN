@@ -1,0 +1,31 @@
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.pytest_cache/
+.ruff_cache/
+
+# virtual envs
+.venv/
+.venv-*/
+
+# runtime state written by scripts/start_servers.sh
+.servers_ready/
+.servers.pids
+logs/
+*.log
+
+# evaluation outputs and local datasets / checkpoints (repo root only)
+/output/
+/data/
+/checkpoints/
+
+# editor / OS
+.DS_Store
+.idea/
+.vscode/
+
+# local Claude Code config; never track
+.claude/

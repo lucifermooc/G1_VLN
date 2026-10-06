@@ -1,0 +1,19 @@
+# LightNav-0 机器人端依赖（不需要 torch / CUDA / GPU）
+#
+#   pip install -r requirements-robot.txt
+#
+# 装在机器人板载计算机上（Jetson Orin / x86 mini PC 均可）。
+
+# ---- 必需 ----
+websockets>=12        # WebSocket 客户端（sync 版 API）
+Pillow>=10            # JPEG 编码 + 图片解码
+numpy>=1.24           # 数组与统计
+
+# ---- 相机（按需安装） ----
+# opencv-python-headless  # USB / V4L2 摄像头、回放 mp4
+# pyrealsense2            # Intel RealSense D435 / D455
+# pyorbbecsdk             # Orbbec Gemini（若不用 UVC 模式）
+
+# ---- 宇树双足底盘（只有要驱动真机才需要） ----
+# cyclonedds==0.10.2      # unitree_sdk2py 的 DDS 后端，版本很关键
+# unitree_sdk2py          # 从 GitHub 源码装：pip install -e .

@@ -1,0 +1,12 @@
+# VLN 自己的 cmdvel_to_sport 参数（节点名 g1_vln_cmdvel_to_sport）。
+# 数值抄自 g1_nav_bridge/config/nav_bridge.yaml（2026-10-06 版）：G1 直行 vx<0.3、转弯 |wz|<0.6 走不动，
+# 低速按方向提升到最小有效值；G1 能原地转，所以 turn_min_vx = 0。
+g1_vln_cmdvel_to_sport:
+  ros__parameters:
+    cmd_vel_topic: /vln/cmd_vel_robot
+    duration: 0.5
+    min_vx: 0.3
+    min_wz: 0.6
+    turn_min_vx: 0.0
+    vx_stop: 0.05
+    wz_stop: 0.15

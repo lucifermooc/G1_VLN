@@ -1,0 +1,36 @@
+# VLN 自己的里程计和 MPC（都在 /vln 命名空间，和导航栈的 /odom、Nav2 互不相干）。
+# 限速抄自导航栈 velocity_smoother 在 G1 上实测的值（aid_navigation2/param/nav2_params.yaml）：
+#   vx 0~0.45 m/s（G1 收到负 vx 会摔倒，MPC 本身也约束 v>=0），|wz|<=0.9 rad/s。
+/vln/g1_vln_sport_to_odom:
+  ros__parameters:
+    input_topic: /odommodestate
+    output_topic: /vln/odom
+    odom_frame: odom
+    base_frame: base_link
+    stale_timeout: 0.5
+
+/vln/vln_mpc:
+  ros__parameters:
+    enabled: false
+    # 话题全写绝对路径：默认值是相对名（vln/response），放进 /vln 命名空间会变成 /vln/vln/response
+    response_topic: /vln/response
+    status_topic: /vln/status
+    mode_topic: /vln/mode
+    enable_topic: /vln/mpc/enable
+    mpc_status_topic: /vln/mpc/status
+    odom_path_topic: /vln/path_odom
+    command_topic: /vln/mpc/cmd_vel
+    odom_topic: /vln/odom
+    objnav_v_max: 0.45
+    track_v_max: 0.45
+    w_max: 0.9
+    # 加速度：起步不能太猛（导航用 0.35 m/s²），减速要快（导航 -2.0）；MPC 只有一个对称值，取中间。
+    a_max_v: 1.0
+    a_max_w: 3.0
+    q_x: 10.0
+    q_y: 10.0
+    q_yaw: 1.0
+    r_v: 0.1
+    r_w: 0.1
+    v_output_scale: 1.0
+    w_output_scale: 1.0
